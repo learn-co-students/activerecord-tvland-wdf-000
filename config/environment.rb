@@ -1,5 +1,5 @@
 require "bundler/setup"
-
+require 'pry'
 require 'active_record'
 
 Bundler.require
