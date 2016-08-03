@@ -3,11 +3,16 @@ class Actor < ActiveRecord::Base
   has_many :shows, through: :characters
 
   def full_name
-    self.select("first_name, last_name")
+    self.first_name + " " + self.last_name
   end
 
   def list_roles
-    self.characters
+    # binding.pry
+    self.characters.collect do |char|
+      self.shows.collect do |show|
+        "#{char.name} - #{show.name}"
+      end
+    end.flatten
   end
 
 end
